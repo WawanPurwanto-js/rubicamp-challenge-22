@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<HTML>
+
+<HEAD>
+  <TITLE>BREAD</TITLE>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</HEAD>
+
+<BODY>
+  <div class="container">
+    <H1>BREAD (Browse, Read, Edit, Add, Delete)</H1>
+    <H2>Filters</H2>
+    <FORM method="get" action="" cellpadding="100">
+      <input type="hidden" name="page" value="1">
+      <table style="width:100%;" border="0">
+        <tr>
+          <div class="form-group">
+            <td style="width:40%"><input type="checkbox" name="ID_checkbox">ID</td>
+            <td style="width:60%"><input type="text" name="id" class="form-control" placeholder="ID"></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <td><input type="checkbox" name="String_checkbox">String</td>
+            <td><input type="text" class="form-control" name="string" placeholder="String"></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <td><input type="checkbox" name="Integer_checkbox">Integer</td>
+            <td><input type="text" class="form-control" name="integer" placeholder="Integer"></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <td><input type="checkbox" name="Float_checkbox">Float</td>
+            <td><input type="text" class="form-control" name="float" placeholder="Float"></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <td><input type="checkbox" name="Date_checkbox">Date</td>
+            <td>
+              <input type="date" class="form-control" name="StartDate" placeholder="Start Date"><br>
+              to<br>
+              <input type="date" class="form-control" name="EndDate" placeholder="End Date">
+            </td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <td><input type="checkbox" name="Boolean_checkbox">Boolean</td>
+            <td>
+              <select class="form-control" name="boolean">
+                <option value="" disabled selected>Choose the boolean ....</option>
+                <option value="True">True</option>
+                <option value="False">False</option>
+              </select>
+            </td>
+          </div>
+        </tr>
+        <tr>
+          <td><button type="submit" value="Search" class="btn btn-primary">Search</button></td>
+          <td></td>
+        </tr>
+      </table>
+    </FORM>
+    <br>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th style="width:10%;">ID</th>
+          <th style="width:15%;">String</th>
+          <th style="width:15%;">Integer</th>
+          <th style="width:15%;">Float</th>
+          <th style="width:15%;">Date</th>
+          <th style="width:10%;">Boolean</th>
+          <th style="width:15%;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let i=0;i<result.length;i++) { %>
+        <tr>
+          <td><%= result[i]._id %></td>
+          <td><%= result[i].string %></td>
+          <td><%= result[i].integer %></td>
+          <td><%= result[i].float %></td>
+          <td><%= result[i].date %></td>
+          <td><%= result[i].boolean %></td>
+          <td>
+            <a href="edit/<%= result[i]._id %>"><button class="btn btn-success">Edit</button></a>
+            <a href="delete/<%= result[i]._id %>"><button class="btn btn-danger">Delete</button></a>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link"
+          href="<%= (page-1)>0 ? url.replace(`page=${page}`,`page=${page-1}`) : url.replace(`page=${page}`,`page=1`) %>">Previous</a>
+      </li>
+      <% for (let i=1;i<=totalPage;i++) { %>
+      <li class="page-item <%= (page == i) ? ' active' : '' ; %>"><a class="page-link"
+          href="<%= url.replace(`page=${page}`,`page=${i}`); %>"><%= i %></a></li>
+      <% } %>
+      <li class="page-item <%= (page == totalPage) ? ' disabled' : '' ; %>"><a class="page-link"
+          href="<%= url.replace(`page=${page}`,`page=${parseInt(page)+1}`) ; %>">Next</a></li>
+    </ul>
+    <a href="add"><button class="btn btn-primary">Add</button></a>
+  </div>
+
+  <BODY>
+
+</HTML>

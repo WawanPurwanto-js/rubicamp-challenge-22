@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<HTML>
+
+<HEAD>
+    <TITLE>EDIT </TITLE>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</HEAD>
+
+<BODY>
+    <div class="container">
+        <H1>BREAD (Browse, Read, Edit, Add, Delete)</H1>
+        <H2>Filters</H2>
+        <FORM method="post" action="/edit/<%= row._id %>" cellpadding="100">
+            <table style="width:100%;" border="0">
+                <tr>
+                    <div class="form-group">
+                        <td>Id</td>
+                        <td><input type="text" name="Id" value="<%= row._id %>" class="form-control" placeholder="Id"
+                                disabled></td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group">
+                        <td>String</td>
+                        <td><input type="text" name="String" value="<%= row.string %>" placeholder="String"
+                                class="form-control"></td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group">
+                        <td>Integer</td>
+                        <td><input type="text" name="Integer" value="<%= row.integer %>" class="form-control"
+                                placeholder="Integer"></td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group">
+                        <td>Float</td>
+                        <td><input type="text" name="Float" value="<%= row.float %>" class="form-control"
+                                placeholder="Float"></td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group">
+                        <td>Date</td>
+                        <td><input type="date" name="Date" value="<%= row.date %>" class="form-control"
+                                placeholder="Date"></td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group">
+                        <td>Boolean</td>
+                        <td>
+                            <select name="Boolean" class="form-control">
+                                <option value="" disabled>Choose the boolean ....</option>
+                                <option value="True" <%= row.boolean == 'True' ? ' selected' : ''; %>>True</option>
+                                <option value="False" <%= row.boolean == 'False' ? ' selected' : ''; %>>False</option>
+                            </select>
+                        </td>
+                    </div>
+                </tr>
+                <tr>
+                    <td><button type="submit" value="Update" class="btn btn-primary">Update</button></td>
+                    <td></td>
+                </tr>
+            </table>
+        </FORM>
+    </div>
+
+    <BODY>
+
+</HTML>
